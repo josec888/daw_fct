@@ -137,4 +137,13 @@ class User implements UserInterface
             return $this->teacher->getId();
         }
     }
+
+    public function getTeacherFullName(): ?string
+    {
+        if (null == $this->teacher){
+            return null;
+        }else{
+            return $this->teacher->getFullName();
+        }
+    }
 }

@@ -14,6 +14,31 @@
     <h2> {{ created_by }} </h2>
 
 
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Lastname</th>
+            <th>Department</th>
+            <th>Nwatch</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for twatch in twatches %}
+        <tr>
+            <td>{{ twatch.teacher.name }}</td>
+            <td>{{ twatch.teacher.lastname }}</td>
+            <td>{{ twatch.teacher.department }}</td>
+            <td>{{ twatch.teacher.nwatch }}</td>
+        </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
     This friendly message is coming from:
     <ul>
         <li>Your controller at <code><a href="{{ '/home/jc/symfony_projects/daw_fct/src/Controller/MainController.php'|file_link(0) }}">src/Controller/MainController.php</a></code></li>

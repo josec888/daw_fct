@@ -22,20 +22,19 @@ class ScheduleRepository extends ServiceEntityRepository
     // /**
     //  * @return Schedule[] Returns an array of Schedule objects
     //  */
-
-    public function findAbsencedTeacher($day,$session)
+    public function getWatchTeachers($day,$session)
     {
-        return $this->createQueryBuilder('s')
-            ->innerJoin('s.teacher', 't')
-            ->innerJoin('s.session', 'se')
-            ->andWhere('s.type LIKE :type')
-            ->andWhere('s.dow LIKE :dow')
-            ->andWhere('se.id LIKE :session')
-            ->setParameter('type', 'LEC')
+        return $this->createQueryBuilder('sch')
+            ->innerJoin('sch.teacher', 't')
+            ->innerJoin('sch.session', 's')
+            ->andWhere('sch.type LIKE :type')
+            ->andWhere('sch.dow LIKE :dow')
+            ->andWhere('s.id LIKE :session')
+            ->setParameter('type', 'G')
             ->setParameter('dow', $day)
             ->setParameter('session', $session)
-            ->orderBy('t.$watches', 'ASC')
-            ->setMaxResults(10)
+            ->orderBy('t.nwatch', 'ASC')
+            //->setMaxResults(10)
             ->getQuery()
             ->getResult()
         ;

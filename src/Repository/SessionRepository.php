@@ -19,6 +19,19 @@ class SessionRepository extends ServiceEntityRepository
         parent::__construct($registry, Session::class);
     }
 
+    /**
+     * @return Session[] Returns an array of Session objects
+     */
+    public function getCurrentSessionId($t) {
+        return $this->createQueryBuilder('s')
+            ->andWhere('s.start <= :val AND s.end > :val')
+            ->setParameter('val', $t)
+            ->select('s.id')
+            ->getQuery()
+            ->getOneOrNullResult()
+            ;
+    }
+
     // /**
     //  * @return Session[] Returns an array of Session objects
     //  */

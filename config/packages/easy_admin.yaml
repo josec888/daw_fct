@@ -1,13 +1,73 @@
 easy_admin:
-    entities:
-#        # List the entity class name you want to manage
-        - App\Entity\Absence
-        - App\Entity\Teacher
-        - App\Entity\Classgroup
-        - App\Entity\User
-        - App\Entity\Classroom
-        - App\Entity\Watch
-        - App\Entity\Subject
-        - App\Entity\Session
-        - App\Entity\Schedule
-        - App\Entity\Task
+        site_name: '<img src="http://dawfct.jcmc.es/images/logoIES_132x37.jpg" />'
+        design:
+            # brand_color: '#1ABC9C'
+
+            # the value of this option can be any valid CSS color
+            # brand_color: 'red'
+            # brand_color: 'rgba(26, 188, 156, 0.85)'
+
+            # if the color includes a '%', you must double it to escape it in the YAML file
+            # brand_color: 'hsl(0, 100%%, 50%%);'
+            assets:
+                favicon: 'favicon.png'
+        entities:
+            User:
+                class: App\Entity\User
+                name_property_path: 'username'
+                list:
+                    fields:
+                        - { property: 'id' }
+                        - { property: 'username' }
+                        - { property: 'teacherFullName', label: 'Profesor' }
+                form:
+                    fields:
+                        - { property: 'id' }
+                        - { property: 'username' }
+                        - { property: 'teacherId' }
+            Teacher:
+                class: App\Entity\Teacher
+                list:
+                    fields:
+                        - { property: 'id', type: 'string' }
+                        - { property: 'fullName', type: 'string' }
+                        - { property: 'enable' }
+                show:
+                    fields:
+                        - { property: 'id', type: 'string' }
+                        - { property: 'name', type: 'string' }
+                        - { property: 'lastname', type: 'string' }
+                        - { property: 'dni', type: 'string' }
+                        - { property: 'phone', type: 'string' }
+                        - { property: 'nwatch', type: 'integer' }
+                        - { property: 'enable' }
+                form:
+                    fields:
+                        - { property: 'id' }
+                        - { property: 'name' }
+                        - { property: 'lastname' }
+                        - { property: 'dni' }
+                        - { property: 'phone' }
+                        - { property: 'department' }
+                        - { property: 'nwatch' }
+                        - { property: 'enable' }
+            Classroom:
+                class: App\Entity\Classroom
+                list:
+                    fields:
+                        - { property: 'id', type: 'string' }
+                        - { property: 'name', type: 'string' }
+            Classgroup:
+                class: App\Entity\Classgroup
+            Subject:
+                class: App\Entity\Subject
+            Schedule:
+                class: App\Entity\Schedule
+            Absence:
+                class: App\Entity\Absence
+            Watch:
+                class: App\Entity\Watch
+            Session:
+                class: App\Entity\Session
+            Task:
+                class: App\Entity\Task

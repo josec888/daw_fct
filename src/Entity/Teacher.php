@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use PhpParser\Node\Scalar\String_;
 
 /**
  * @ORM\Table(options={"collate"="utf8mb4_spanish2_ci"})
@@ -307,5 +308,9 @@ class Teacher
         }
 
         return $this;
+    }
+    public function getFullName(): ?String
+    {
+        return $this->getLastname().', '.$this->getName();
     }
 }

@@ -19,6 +19,29 @@ class AbsenceRepository extends ServiceEntityRepository
         parent::__construct($registry, Absence::class);
     }
 
+    /**
+     * @return Absence[] Returns an array of Absence objects
+     */
+    public function getAbsences($dia,$session)
+    {
+        return $this->createQueryBuilder('a')
+            ->innerJoin('a.session', 's')
+            ->innerJoin('a.teacher', 't')
+            ->innerJoin('t.schedules', 'sch')
+            ->innerJoin('sch.classgroup', 'g')
+            ->andWhere('a.dateleave = :dia')
+            ->andWhere('a.session = :session')
+            ->andWhere('sch.type LIKE :type')
+            ->setParameter('type', 'LEC')
+            ->setParameter('dia', $dia)
+            ->setParameter('session', $session)
+            ->orderBy('g.priority', 'DESC')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
     // /**
     //  * @return Absence[] Returns an array of Absence objects
     //  */
