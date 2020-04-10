@@ -1,0 +1,13 @@
+easy_admin:
+    entities:
+#        # List the entity class name you want to manage
+        - App\Entity\Absence
+        - App\Entity\Teacher
+        - App\Entity\Classgroup
+        - App\Entity\User
+        - App\Entity\Classroom
+        - App\Entity\Watch
+        - App\Entity\Subject
+        - App\Entity\Session
+        - App\Entity\Schedule
+        - App\Entity\Task

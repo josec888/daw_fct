@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Absence{% endblock %}
+
+{% block body %}
+    <h1>Absence</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ absence.id }}</td>
+            </tr>
+            <tr>
+                <th>Type</th>
+                <td>{{ absence.type }}</td>
+            </tr>
+            <tr>
+                <th>Dateleave</th>
+                <td>{{ absence.dateleave ? absence.dateleave|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Work</th>
+                <td>{{ absence.work }}</td>
+            </tr>
+            <tr>
+                <th>Created</th>
+                <td>{{ absence.created ? absence.created|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Updated</th>
+                <td>{{ absence.updated ? absence.updated|date('Y-m-d') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('absence_index') }}">back to list</a>
+
+    <a href="{{ path('absence_edit', {'id': absence.id}) }}">edit</a>
+
+    {{ include('absence/_delete_form.html.twig') }}
+{% endblock %}
